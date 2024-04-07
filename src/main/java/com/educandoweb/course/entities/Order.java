@@ -2,7 +2,9 @@ package com.educandoweb.course.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import com.educandoweb.course.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -32,11 +34,13 @@ public class Order implements Serializable{
 	@JoinColumn(name = "client_id")
 	private User client;
 	
+	private Set<OrderItem> items = new HashSet<>();
+	
 	public Order() {
 	}
 	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
 		super();
-		this.id = id;
+		this.id = id;	
 		this.moment = moment;
 		this.client = client;
 		setOrderStatus(orderStatus);

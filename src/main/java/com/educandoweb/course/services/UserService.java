@@ -32,4 +32,20 @@ public class UserService {
 	public void delete(long id) {
 		repository.deleteById(id);
 	}
+	
+	public User update(Long id, User obj) {
+		try {
+			User entity = repository.getReferenceById(id);
+			updateData(entity, obj);
+			return repository.save(entity);
+		} catch (Exception e) {
+			throw e;
+		}	
+	}
+
+	private void updateData(User entity, User obj) {
+		entity.setName(obj.getName());
+		entity.setEmail(obj.getEmail());
+		entity.setPhone(obj.getPhone());
+	}
 }
